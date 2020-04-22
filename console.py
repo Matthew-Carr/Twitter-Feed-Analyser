@@ -1,9 +1,11 @@
+print('Starting console...')
 import tweepy
 import pandas as pd
 from Data.processing_scripts.train_vectorisers import Vectoriser
 from Data.processing_scripts.clean_data import clean_string
 import matplotlib.pyplot as plt
 import numpy as np
+from time import sleep
 
 #--------------------------------------------------------------------------------
 # These tokens are needed for user authentication.
@@ -84,21 +86,26 @@ def get_tweets(model, vectoriser):
 
             visualise_sentiment(predictions, search_term)
 
-            print('Showing sample of 10 tweets...')
+
             unique_tweets = list(set((tweet_texts[i], predictions[i]) for i in range(len(tweet_texts))))
+            print('\nShowing sample of ' + str(min(len(unique_tweets), 10)) + ' tweets...\n---------------------------')
 
             for i in range(min(len(unique_tweets), 10)):
                 clean_tweet = unique_tweets[i][0]
                 prediction = unique_tweets[i][1]
-                print('Clean Tweet: ', clean_tweet)
+                print('\nClean Tweet: ', clean_tweet)
                 print('Prediction: ', prediction)
+                sleep(0.2)
         else:
             print('There are no search results matching this query...')
 
-        cont = input('Continue? y/n')
+        while True:
+            cont = input('\nWould you like to continue? y / n').strip().lower()
+            if cont in {'y', 'n'}:
+                break
+            print('Please enter either : y (yes) or n (no)\n')
         if cont == 'n':
             break
-
 
 if __name__ == '__main__':
     # data_file = pd.read_csv("Data/processed_data/RawData.csv", encoding="ISO-8859-1")
