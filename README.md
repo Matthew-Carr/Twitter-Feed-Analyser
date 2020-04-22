@@ -2,7 +2,7 @@
 
 **Welcome to my repository**. This is a twitter feed analyser for making sentiment analysis predictions on a given topic. Tweets are scraped from twitter and analysed to gather opinions given a specific search term. There are two main scripts, the console and the training environment.
 - train_models.py: train new machine learning models on SemEval 2016 sentiment analysis data
-- console.py: use existing models to to make sentiment analysis predictions
+- console.py: use existing models to to make sentiment analysis predictions, an image saved by the name *"Sentiment_of_searchterm.png"*
 
 To run this repository, the following packages must be installed and run using Python3:
 - spacy
